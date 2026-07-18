@@ -1565,19 +1565,24 @@ function Fechamento() {
     <Slide className="items-center text-center" grid={false}>
       <GlowOrb className="left-[-10%] top-[-20%] h-[55vh] w-[55vh] bg-navy" />
       <GlowOrb className="bottom-[-25%] right-[-10%] h-[60vh] w-[60vh] bg-coral/35" />
-      <blockquote className="anim-rise max-w-5xl text-[clamp(1.2rem,2.6vw,2.2rem)] font-semibold leading-[1.4] text-white/90">
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src="/fechamento.png"
+        alt="Ralph Gracie — Força para proteger. Caráter para servir. Exemplo para transformar. Juntos somos mais fortes."
+        className="anim-rise mx-auto max-h-[52vh] w-auto max-w-[86vw] rounded-2xl border border-white/10 shadow-[0_20px_80px_rgba(0,0,0,0.55)]"
+      />
+      <blockquote className="anim-rise d-3 mt-8 max-w-5xl text-[clamp(0.95rem,1.7vw,1.45rem)] font-semibold leading-[1.45] text-white/90">
         &ldquo;A virada mais importante desse projeto não veio de nenhuma
         pesquisa — <Coral>veio do próprio Ralph</Coral>. Simples e honesta:{" "}
-        <em>&lsquo;que eu não tenho coração&rsquo;</em>.
-        <br />
-        <br />É exatamente o contrário disso que o Rio precisa ver.{" "}
+        <em>&lsquo;que eu não tenho coração&rsquo;</em>. É exatamente o
+        contrário disso que o Rio precisa ver.{" "}
         <strong className="text-white">
           E é exatamente isso que essa campanha vai mostrar.
         </strong>
         &rdquo;
       </blockquote>
-      <div className="anim-bar d-5 mx-auto mt-12 h-[3px] w-40 bg-coral" />
-      <p className="anim-fade d-6 mt-8 text-[clamp(1rem,2vw,1.6rem)] font-extrabold uppercase tracking-[0.25em]">
+      <div className="anim-bar d-5 mx-auto mt-6 h-[3px] w-40 bg-coral" />
+      <p className="anim-fade d-6 mt-5 text-[clamp(0.85rem,1.6vw,1.3rem)] font-extrabold uppercase tracking-[0.25em]">
         A verdadeira força existe para <Coral>proteger</Coral>
       </p>
     </Slide>
