@@ -1730,14 +1730,14 @@ function VisualDna() {
 /* ------------------------------------------------------------------ */
 
 const validacaoImagem = [
-  ["Rosto bem iluminado e legível?", "Kahneman/Todorov"],
-  ["Composição repetível sem variação?", "Ries, Positioning"],
-  ["Quem recebe a proteção está no centro simbólico?", "Miller, StoryBrand"],
-  ["Vende o personagem, não a proposta?", "Durán Barba"],
-  ["Ralph voltado para alguém, nunca isolado e frontal?", "Doc. 26 — teste do contraste"],
-  ["Fotografada no Rio, em local real e atual?", "Doc. 34, 1.5"],
-  ["Faixa coral é a peça real, não gráfico?", "Doc. 34, 1.2"],
-  ["Nada de troféu, pódio ou conquista pessoal?", "Doc. 26, seção 5"],
+  ["Rosto bem iluminado e legível", "Kahneman/Todorov"],
+  ["Composição repetível sem variação", "Ries, Positioning"],
+  ["Quem recebe a proteção está no centro simbólico", "Miller, StoryBrand"],
+  ["Vende o personagem, não a proposta", "Durán Barba"],
+  ["Ralph voltado para alguém, nunca isolado e frontal", "Doc. 26 — teste do contraste"],
+  ["Fotografada no Rio, em local real e atual", "Doc. 34, 1.5"],
+  ["Faixa coral é a peça real, não gráfico", "Doc. 34, 1.2"],
+  ["Nada de troféu, pódio ou conquista pessoal", "Doc. 26, seção 5"],
 ];
 
 function ImagemAncora() {
@@ -1799,7 +1799,7 @@ function ImagemAncora() {
             ))}
           </div>
           <p className="mt-3 text-[clamp(0.72rem,0.95vw,0.88rem)] text-white/55">
-            Se qualquer resposta falhar, a foto não vira âncora — no máximo,
+            Se qualquer critério falhar, a foto não vira âncora — no máximo,
             material de apoio. Sessão real na Gracie Kore, nunca imagem gerada
             artificialmente.
           </p>
