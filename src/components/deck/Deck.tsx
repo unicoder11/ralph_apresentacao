@@ -1,9 +1,16 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
-import { slides } from "./slides";
+import { useCallback, useEffect, useState, type ReactNode } from "react";
 
-export default function Deck() {
+export type DeckSlide = { id: string; node: ReactNode };
+
+export default function Deck({
+  slides,
+  footerLabel,
+}: {
+  slides: DeckSlide[];
+  footerLabel: string;
+}) {
   const [index, setIndex] = useState(0);
   const total = slides.length;
 
@@ -61,7 +68,7 @@ export default function Deck() {
 
       {/* footer chrome */}
       <footer className="pointer-events-none absolute inset-x-0 bottom-0 z-20 flex items-center justify-between px-[7vw] pb-5 text-[11px] font-semibold uppercase tracking-[0.25em] text-white/35">
-        <span>Ralph Gracie · CampaignOS</span>
+        <span>{footerLabel}</span>
         <div className="pointer-events-auto flex items-center gap-4">
           <button
             onClick={() => go(-1)}
