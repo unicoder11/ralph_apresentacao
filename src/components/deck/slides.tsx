@@ -144,6 +144,60 @@ function Metodologia() {
 }
 
 /* ------------------------------------------------------------------ */
+/* 03b — O estudo em números                                           */
+/* ------------------------------------------------------------------ */
+
+const numerosEstudo: [string, string, string][] = [
+  ["52", "documentos de trabalho produzidos", "≈ 12.300 linhas de análise escrita"],
+  ["22", "concorrentes auditados um a um", "com votos nominais TSE 2022 verificados"],
+  ["7", "dossiês individuais de adversários", "Poubel, Malafaia, Knoploch, Jordy…"],
+  ["12", "posições de marca mapeadas", "cada uma com saturação e ocupantes reais"],
+  ["6", "frameworks proprietários aplicados", "do Political Brain ao Political Myth"],
+  ["4", "hipóteses de posicionamento testadas", "três descartadas — só uma sobreviveu"],
+  ["7", "fontes de votos mapeadas", "comunidades, não CEPs"],
+  ["8", "critérios de validação da imagem-âncora", "checagem cruzada antes de fotografar"],
+];
+
+function EstudoNumeros() {
+  return (
+    <Slide>
+      <GlowOrb className="right-[-15%] bottom-[-25%] h-[55vh] w-[55vh] bg-coral/25" />
+      <Kicker>Parte 1 · Metodologia</Kicker>
+      <Title>
+        O estudo em <Coral>números</Coral>
+      </Title>
+      <div className="grid max-w-6xl grid-cols-2 gap-4 lg:grid-cols-4">
+        {numerosEstudo.map(([n, t, d], i) => (
+          <Card key={t} delay={`d-${cap(i + 1)}`} className="flex flex-col">
+            <span className="text-[clamp(2rem,4.5vw,3.8rem)] font-black leading-none text-coral">
+              {n}
+            </span>
+            <h3 className="mt-2 text-[clamp(0.78rem,1.05vw,0.98rem)] font-bold leading-snug">
+              {t}
+            </h3>
+            <p className="mt-1.5 text-[clamp(0.68rem,0.9vw,0.85rem)] leading-relaxed text-white/55">
+              {d}
+            </p>
+          </Card>
+        ))}
+      </div>
+      <p className="anim-rise d-8 mt-7 max-w-5xl text-[clamp(0.85rem,1.25vw,1.05rem)] leading-relaxed text-white/70">
+        Cada número desta apresentação pode ser rastreado até um documento e
+        uma fonte primária —{" "}
+        <strong className="text-white">
+          nenhuma recomendação aqui nasceu de opinião
+        </strong>
+        . O anexo final lista o acervo completo, disponível para consulta.
+      </p>
+      <Fonte>
+        Acervo: 52 documentos · TSE · TRE-RJ · ALERJ · imprensa BR/EUA —
+        consolidado 17/07/2026
+      </Fonte>
+    </Slide>
+  );
+}
+
+/* ------------------------------------------------------------------ */
 /* 04 — Frameworks                                                     */
 /* ------------------------------------------------------------------ */
 
@@ -285,6 +339,10 @@ function Terreno() {
         abandono do Estado, perda de referências, desconfiança na política e o
         desejo de um futuro melhor para os filhos.
       </p>
+      <Fonte>
+        Fontes: Doc. 01 (investigação estratégica) · Doc. 04 (mapa do eleitor)
+        · histórico eleitoral RJ
+      </Fonte>
     </Slide>
   );
 }
@@ -335,6 +393,10 @@ function Eleitor() {
           eleitorado que pretende conquistar.
         </p>
       </Card>
+      <Fonte>
+        Fonte: Doc. 03 — psicologia do eleitor conservador carioca (7 perfis
+        mapeados)
+      </Fonte>
     </Slide>
   );
 }
@@ -390,6 +452,10 @@ function Concorrencia() {
           </p>
         </Card>
       </div>
+      <Fonte>
+        Fontes: dossiês individuais de adversários · matriz competitiva ·
+        votos nominais TSE 2022
+      </Fonte>
     </Slide>
   );
 }
@@ -457,6 +523,103 @@ function AritmeticaEleicao() {
       <Fonte>
         Fontes: TSE 2022 (via G1, UOL, Valor, O Globo) · perfis ALERJ · TRE-RJ
         (retotalização 03–04/2026) — verificado 17/07/2026
+      </Fonte>
+    </Slide>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/* 08b1 — Escala do desafio (barras de votos nominais)                 */
+/* ------------------------------------------------------------------ */
+
+const votosNominais: [string, number, string][] = [
+  ["Guilherme Delaroli", 114155, "máquina de Itaboraí"],
+  ["Giselle Monteiro", 95028, "mulher conservadora"],
+  ["Jair Bittencourt", 75253, "interior · 3º mandato"],
+  ["Filippe Poubel", 73632, "segurança / confronto"],
+  ["Valdecy da Saúde", 72250, "saúde popular"],
+  ["Samuel Malafaia", 72056, "evangélico"],
+  ["Índia Armelau", 57582, "mulher + guerra cultural"],
+  ["Renato Miranda", 54341, "base territorial"],
+  ["Anderson Moraes", 52313, "bolsonarismo ideológico"],
+  ["Márcio Gualberto", 51856, "Polícia Militar"],
+  ["Alan Lopes", 42720, "evangélico · último eleito PL"],
+];
+
+const MAX_VOTOS = 114155;
+const PISO_VOTOS = 42720;
+
+function EscalaDesafio() {
+  const fmt = (n: number) => n.toLocaleString("pt-BR");
+  return (
+    <Slide>
+      <GlowOrb className="right-[-15%] top-[-25%] h-[50vh] w-[50vh] bg-navy" />
+      <Kicker>Matriz competitiva · Votos nominais TSE 2022, em escala real</Kicker>
+      <Title>
+        A escala do desafio, <Coral>sem retoques</Coral>
+      </Title>
+      <div className="relative max-w-6xl">
+        {/* linha do piso de entrada */}
+        <div
+          className="anim-fade d-6 absolute bottom-[-6px] top-[-26px] z-10 w-[2px] border-l-2 border-dashed border-coral/80"
+          style={{ left: `calc(clamp(120px,13vw,190px) + (100% - clamp(120px,13vw,190px) - 74px) * ${PISO_VOTOS / MAX_VOTOS})` }}
+        >
+          <span className="absolute left-2 top-[-2px] whitespace-nowrap text-[clamp(0.55rem,0.75vw,0.7rem)] font-bold uppercase tracking-[0.15em] text-coral">
+            piso de entrada · 42.720
+          </span>
+        </div>
+        <div className="space-y-[clamp(3px,0.55vh,7px)]">
+          {votosNominais.map(([nome, votos, terr], i) => (
+            <div
+              key={nome}
+              className={`anim-rise d-${cap(Math.floor(i / 2) + 1)} grid grid-cols-[clamp(120px,13vw,190px)_1fr_74px] items-center gap-x-3`}
+            >
+              <span className="truncate text-right text-[clamp(0.7rem,0.95vw,0.9rem)] font-bold text-white/85">
+                {nome}
+              </span>
+              <div className="h-[clamp(12px,2vh,20px)] w-full overflow-hidden rounded-r-md bg-white/4">
+                <div
+                  className={`anim-bar d-${cap(Math.floor(i / 2) + 2)} flex h-full items-center rounded-r-md bg-white/25 pl-2`}
+                  style={{ width: `${(votos / MAX_VOTOS) * 100}%` }}
+                >
+                  <span className="truncate text-[clamp(0.55rem,0.72vw,0.68rem)] font-semibold uppercase tracking-wide text-white/70">
+                    {terr}
+                  </span>
+                </div>
+              </div>
+              <span className="text-[clamp(0.68rem,0.92vw,0.86rem)] font-bold tabular-nums text-white/60">
+                {fmt(votos)}
+              </span>
+            </div>
+          ))}
+          {/* Ralph */}
+          <div className="anim-rise d-6 grid grid-cols-[clamp(120px,13vw,190px)_1fr_74px] items-center gap-x-3 pt-2">
+            <span className="truncate text-right text-[clamp(0.72rem,1vw,0.95rem)] font-black text-coral">
+              Ralph (2024)
+            </span>
+            <div className="h-[clamp(12px,2vh,20px)] w-full overflow-hidden rounded-r-md bg-white/4">
+              <div
+                className="anim-bar d-7 h-full min-w-[4px] rounded-r-md bg-coral shadow-[0_0_20px_rgba(244,106,78,0.6)]"
+                style={{ width: `${(1422 / MAX_VOTOS) * 100}%` }}
+              />
+            </div>
+            <span className="text-[clamp(0.68rem,0.92vw,0.86rem)] font-black tabular-nums text-coral">
+              1.422
+            </span>
+          </div>
+        </div>
+      </div>
+      <p className="anim-rise d-8 mt-6 max-w-5xl text-[clamp(0.85rem,1.25vw,1.05rem)] leading-relaxed text-white/70">
+        Mostramos este gráfico em escala real de propósito:{" "}
+        <strong className="text-white">
+          um estudo que esconde a distância não serve para vencê-la
+        </strong>
+        . A boa notícia vem em duas partes — um território de marca sem dono e
+        um caminho de votos calculado comunidade por comunidade.
+      </p>
+      <Fonte>
+        Fonte: votos nominais TSE 2022 (dep. estadual RJ) · Ralph: TSE 2024
+        (vereador) — verificado 17/07/2026
       </Fonte>
     </Slide>
   );
@@ -658,6 +821,128 @@ function MatrizPosicionamento() {
         mandato. <strong className="text-white">O território vazio é a
         diferenciação; não substitui a estrutura de votos.</strong>
       </p>
+      <Fonte>
+        Fonte: dossiers/matriz — 12 posições · ocupantes com votos nominais
+        TSE 2022 · verificado 17/07/2026
+      </Fonte>
+    </Slide>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/* 08c2 — Mapa de posicionamento 2x2                                   */
+/* ------------------------------------------------------------------ */
+
+type Ponto = {
+  nome: string;
+  x: number; // credibilidade de Ralph (0–100)
+  y: number; // saturação competitiva (0–100, alto = saturado)
+  destaque?: boolean;
+};
+
+const pontosMapa: Ponto[] = [
+  { nome: "Máquina municipal", x: 6, y: 93 },
+  { nome: "Guerra cultural", x: 26, y: 88 },
+  { nome: "Polícia / Segurança", x: 20, y: 80 },
+  { nome: "Evangélico", x: 34, y: 72 },
+  { nome: "Interior", x: 22, y: 60 },
+  { nome: "Saúde", x: 16, y: 45 },
+  { nome: "Celebridade digital", x: 68, y: 36 },
+  { nome: "Esporte", x: 84, y: 16 },
+  { nome: "Mentor / formação", x: 76, y: 8 },
+  { nome: "Protetor com prova real", x: 88, y: 24, destaque: true },
+];
+
+function MapaPosicionamento() {
+  return (
+    <Slide>
+      <GlowOrb className="right-[-20%] bottom-[-25%] h-[55vh] w-[55vh] bg-coral/20" />
+      <Kicker>Síntese da matriz · Duas variáveis decidem o território</Kicker>
+      <Title>
+        Onde competir: <Coral>credibilidade</Coral> ×{" "}
+        <span className="text-white/50">saturação</span>
+      </Title>
+      <div className="grid max-w-6xl grid-cols-1 items-start gap-8 lg:grid-cols-[1.6fr_1fr]">
+        <div className="anim-rise d-2">
+          <div className="relative aspect-16/10 w-full rounded-2xl border border-white/10 bg-white/3">
+            {/* quadrante vencedor */}
+            <div className="absolute bottom-0 right-0 h-1/2 w-1/2 rounded-br-2xl bg-coral/8 ring-1 ring-inset ring-coral/25" />
+            <span className="absolute bottom-2 right-3 text-[clamp(0.55rem,0.75vw,0.7rem)] font-bold uppercase tracking-[0.2em] text-coral/70">
+              Quadrante vencedor
+            </span>
+            {/* eixos centrais */}
+            <div className="absolute left-1/2 top-0 h-full w-px bg-white/10" />
+            <div className="absolute left-0 top-1/2 h-px w-full bg-white/10" />
+            {/* rótulos dos eixos */}
+            <span className="absolute left-1/2 top-1.5 -translate-x-1/2 text-[clamp(0.5rem,0.7vw,0.65rem)] font-semibold uppercase tracking-[0.2em] text-white/35">
+              Território saturado
+            </span>
+            <span className="absolute bottom-1.5 left-1/2 -translate-x-1/2 text-[clamp(0.5rem,0.7vw,0.65rem)] font-semibold uppercase tracking-[0.2em] text-white/35">
+              Território livre
+            </span>
+            <span className="absolute left-1.5 top-1/2 -translate-y-1/2 -rotate-90 text-[clamp(0.5rem,0.7vw,0.65rem)] font-semibold uppercase tracking-[0.2em] text-white/35">
+              Baixa credibilidade
+            </span>
+            <span className="absolute right-1.5 top-1/2 -translate-y-1/2 rotate-90 text-[clamp(0.5rem,0.7vw,0.65rem)] font-semibold uppercase tracking-[0.2em] text-white/35">
+              Alta credibilidade
+            </span>
+            {/* pontos */}
+            {pontosMapa.map((p, i) => (
+              <div
+                key={p.nome}
+                className={`anim-fade d-${cap(i + 1)} absolute -translate-x-1/2 -translate-y-1/2`}
+                style={{ left: `${8 + p.x * 0.84}%`, top: `${8 + (100 - p.y) * 0.84}%` }}
+              >
+                <div className="flex flex-col items-center">
+                  <span
+                    className={
+                      p.destaque
+                        ? "h-5 w-5 rounded-full bg-coral shadow-[0_0_30px_rgba(244,106,78,0.8)] ring-4 ring-coral/30"
+                        : "h-3 w-3 rounded-full bg-white/45"
+                    }
+                  />
+                  <span
+                    className={`mt-1 whitespace-nowrap text-center font-semibold ${
+                      p.destaque
+                        ? "text-[clamp(0.62rem,0.85vw,0.8rem)] font-black text-coral"
+                        : "text-[clamp(0.55rem,0.75vw,0.72rem)] text-white/60"
+                    }`}
+                  >
+                    {p.nome}
+                  </span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className="space-y-4">
+          <Card delay="d-4" className="border-l-4 border-l-coral">
+            <p className="text-[clamp(0.85rem,1.2vw,1.05rem)] leading-relaxed text-white/85">
+              Todos os territórios do lado esquerdo exigiriam que Ralph{" "}
+              <strong className="text-white">fingisse ser algo que não é</strong>{" "}
+              — polícia, pastor, político de carreira. Custo alto, credibilidade
+              baixa.
+            </p>
+          </Card>
+          <Card delay="d-5">
+            <p className="text-[clamp(0.85rem,1.2vw,1.05rem)] leading-relaxed text-white/80">
+              Só um território combina{" "}
+              <Coral>credibilidade máxima</Coral> (décadas de prova real) com{" "}
+              <Coral>concorrência mínima</Coral>: o Protetor que forma pessoas.
+              Não foi escolhido por gosto —{" "}
+              <strong className="text-white">
+                foi o único quadrante que sobrou depois de eliminar os outros
+                com dados
+              </strong>
+              .
+            </p>
+          </Card>
+        </div>
+      </div>
+      <Fonte>
+        Derivado da matriz de saturação (12 posições · ocupantes verificados
+        TSE 2022) + Political DNA de Ralph
+      </Fonte>
     </Slide>
   );
 }
@@ -801,6 +1086,70 @@ function Frase() {
 }
 
 /* ------------------------------------------------------------------ */
+/* 10b — Triangulação: três fontes independentes convergem             */
+/* ------------------------------------------------------------------ */
+
+const fontesTriangulacao = [
+  {
+    n: "A",
+    t: "O eleitorado",
+    doc: "Doc. 03 · Psicologia do eleitor conservador carioca",
+    d: "Entre os sete perfis psicológicos mapeados, o Protetor já era o maior segmento do conservadorismo carioca — meses antes de qualquer resposta de Ralph.",
+  },
+  {
+    n: "B",
+    t: "A concorrência",
+    doc: "Matriz competitiva · 22 concorrentes, votos TSE 2022",
+    d: "O território \u201cproteção com prova real de décadas\u201d não tem ocupante crível entre os 70 eleitos da ALERJ. Todos os protetores genéricos protegem com discurso; nenhum com biografia.",
+  },
+  {
+    n: "C",
+    t: "O próprio Ralph",
+    doc: "Questionário Political DNA · resposta espontânea",
+    d: "Sem conhecer as análises A e B, Ralph respondeu como pessoa — e sua maior dor (\u201cque eu não tenho coração\u201d) apontou exatamente para o mesmo lugar.",
+  },
+];
+
+function Triangulacao() {
+  return (
+    <Slide>
+      <GlowOrb className="left-[-15%] top-[-25%] h-[55vh] w-[55vh] bg-navy" />
+      <Kicker>Parte 4 · Por que isso não é intuição</Kicker>
+      <Title>
+        Três fontes independentes.{" "}
+        <Coral>Uma única conclusão.</Coral>
+      </Title>
+      <div className="grid max-w-6xl grid-cols-1 gap-5 md:grid-cols-3">
+        {fontesTriangulacao.map((f, i) => (
+          <Card key={f.n} delay={`d-${i * 2 + 2}`} className="flex flex-col">
+            <span className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-coral text-[clamp(1rem,1.4vw,1.3rem)] font-black text-coral">
+              {f.n}
+            </span>
+            <h3 className="mt-3 text-[clamp(1rem,1.5vw,1.35rem)] font-extrabold">
+              {f.t}
+            </h3>
+            <p className="mt-1 text-[clamp(0.6rem,0.82vw,0.75rem)] font-bold uppercase tracking-[0.15em] text-white/40">
+              {f.doc}
+            </p>
+            <p className="mt-3 text-[clamp(0.78rem,1.05vw,0.96rem)] leading-relaxed text-white/70">
+              {f.d}
+            </p>
+          </Card>
+        ))}
+      </div>
+      <Card delay="d-7" className="mt-8 max-w-6xl border-l-4 border-l-coral">
+        <p className="text-[clamp(0.95rem,1.5vw,1.3rem)] font-semibold leading-snug">
+          Demanda do eleitorado + território sem dono + verdade biográfica de
+          Ralph: <Coral>as três análises foram feitas separadas e apontaram
+          para o mesmo ponto</Coral>. Em pesquisa, isso se chama triangulação —
+          é o oposto de uma aposta.
+        </p>
+      </Card>
+    </Slide>
+  );
+}
+
+/* ------------------------------------------------------------------ */
 /* 11 — Conflito narrativo                                             */
 /* ------------------------------------------------------------------ */
 
@@ -910,6 +1259,10 @@ function Arquetipo() {
         <strong className="text-white">prova</strong>: Ralph forma pessoas
         porque essa é uma das formas mais poderosas de proteger.
       </p>
+      <Fonte>
+        Fonte: Doc. 18 — Political DNA real, validado nas respostas do próprio
+        Ralph
+      </Fonte>
     </Slide>
   );
 }
@@ -1087,6 +1440,101 @@ function MarcaOperacao() {
           </strong>
         </p>
       </div>
+    </Slide>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/* 15a2 — O caminho até 45 mil votos                                   */
+/* ------------------------------------------------------------------ */
+
+const fontesVotos: { nome: string; capitaes: number; votos: number; cor: string }[] = [
+  { nome: "Comunidade Gracie / Jiu-Jitsu", capitaes: 120, votos: 12000, cor: "bg-coral" },
+  { nome: "Outras artes marciais", capitaes: 60, votos: 6000, cor: "bg-coral/75" },
+  { nome: "Donos de academia e empreendedores", capitaes: 60, votos: 6000, cor: "bg-coral/55" },
+  { nome: "Pais de alunos", capitaes: 60, votos: 6000, cor: "bg-white/70" },
+  { nome: "Desiludidos com a política", capitaes: 60, votos: 6000, cor: "bg-white/50" },
+  { nome: "Forças de segurança que treinam", capitaes: 50, votos: 5000, cor: "bg-white/35" },
+  { nome: "Evangélicos conservadores", capitaes: 40, votos: 4000, cor: "bg-white/20" },
+];
+
+const TOTAL_MODELO = fontesVotos.reduce((s, f) => s + f.votos, 0);
+
+function CaminhoVotos() {
+  const fmt = (n: number) => n.toLocaleString("pt-BR");
+  return (
+    <Slide>
+      <GlowOrb className="left-[-15%] top-[-25%] h-[55vh] w-[55vh] bg-coral/25" />
+      <Kicker>O modelo · De 1.422 ao piso de entrada, comunidade por comunidade</Kicker>
+      <Title>
+        O caminho até <Coral>{fmt(TOTAL_MODELO)} votos</Coral> não é uma
+        esperança. É uma conta.
+      </Title>
+      <div className="max-w-6xl">
+        {/* barra empilhada */}
+        <div className="anim-rise d-2 relative">
+          <div className="flex h-[clamp(34px,5.5vh,52px)] w-full overflow-hidden rounded-xl bg-white/5">
+            {fontesVotos.map((f) => (
+              <div
+                key={f.nome}
+                className={`anim-bar d-3 ${f.cor} h-full border-r border-navy-darker/60`}
+                style={{ width: `${(f.votos / TOTAL_MODELO) * 100}%` }}
+              />
+            ))}
+          </div>
+          {/* marcador do piso */}
+          <div
+            className="anim-fade d-6 absolute bottom-[-10px] top-[-10px] w-[2px] border-l-2 border-dashed border-white"
+            style={{ left: `${(PISO_VOTOS / TOTAL_MODELO) * 100}%` }}
+          >
+            <span className="absolute left-2 top-[-4px] whitespace-nowrap text-[clamp(0.55rem,0.78vw,0.72rem)] font-bold uppercase tracking-[0.15em] text-white">
+              piso 2022 · 42.720
+            </span>
+          </div>
+        </div>
+        {/* legenda */}
+        <div className="mt-6 grid grid-cols-1 gap-x-8 gap-y-1.5 sm:grid-cols-2">
+          {fontesVotos.map((f, i) => (
+            <div
+              key={f.nome}
+              className={`anim-rise d-${cap(i + 2)} flex items-center gap-3 text-[clamp(0.72rem,0.98vw,0.92rem)]`}
+            >
+              <span className={`h-3 w-3 shrink-0 rounded-sm ${f.cor}`} />
+              <span className="flex-1 font-semibold text-white/80">{f.nome}</span>
+              <span className="tabular-nums text-white/50">
+                {f.capitaes} capitães
+              </span>
+              <span className="w-16 text-right font-bold tabular-nums">
+                {fmt(f.votos)}
+              </span>
+            </div>
+          ))}
+        </div>
+      </div>
+      <div className="mt-6 grid max-w-6xl grid-cols-1 gap-4 md:grid-cols-2">
+        <Card delay="d-7" className="border-l-4 border-l-coral">
+          <p className="text-[clamp(0.8rem,1.1vw,1rem)] leading-relaxed text-white/80">
+            <strong className="text-coral">A unidade do modelo é o capitão</strong>{" "}
+            — meta individual fixa do Ground Game: 100 votos comprometidos, 10
+            voluntários, 20 reuniões, 5 líderes. 450 capitães ×100 votos ={" "}
+            {fmt(TOTAL_MODELO)} — acima do piso que elegeu o último deputado do
+            PL em 2022.
+          </p>
+        </Card>
+        <Card delay="d-8">
+          <p className="text-[clamp(0.8rem,1.1vw,1rem)] leading-relaxed text-white/80">
+            <strong className="text-white">Metas operacionais, não previsão:</strong>{" "}
+            cada segmento vira um contador auditável no CRM (votos
+            comprometidos por comunidade, atualizado toda sexta-feira). Se uma
+            fonte não performa, o modelo mostra{" "}
+            <em>onde</em> e <em>quanto</em> realocar.
+          </p>
+        </Card>
+      </div>
+      <Fonte>
+        Modelo: Doc. 12 (fontes de votos) · Doc. 13 (Ground Game — metas por
+        capitão) · piso: TSE 2022, Alan Lopes
+      </Fonte>
     </Slide>
   );
 }
@@ -1432,6 +1880,9 @@ function DigitalDna() {
           </p>
         </Card>
       </div>
+      <Fonte>
+        Fonte: Doc. 27 — Digital DNA (escada de CTA e KPIs por canal)
+      </Fonte>
     </Slide>
   );
 }
@@ -1457,6 +1908,93 @@ function Filtro() {
       <p className="anim-fade d-6 mt-10 text-[clamp(0.95rem,1.5vw,1.25rem)] text-white/60">
         Se a resposta for não: <strong className="text-white">revisar</strong>.
         Essa simplicidade é uma força, não uma limitação.
+      </p>
+    </Slide>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/* 16a2 — Medição contínua                                             */
+/* ------------------------------------------------------------------ */
+
+const kpis: [string, string, string, string][] = [
+  [
+    "Votos comprometidos",
+    "CRM · por comunidade",
+    "semanal",
+    "abaixo de 80% da meta do mês → realocar capitães entre fontes",
+  ],
+  [
+    "Capitães ativos",
+    "relatórios de sexta-feira",
+    "semanal",
+    "capitão sem atividade por 2 semanas → substituição ou reforço",
+  ],
+  [
+    "Reconhecimento de nome",
+    "pesquisa de rastreio",
+    "mensal",
+    "estagnado por 2 ondas → revisar mix de canais de descoberta",
+  ],
+  [
+    "Associação \u201cRalph = protetor\u201d",
+    "pesquisa + social listening",
+    "mensal",
+    "se \u201clutador/agressivo\u201d dominar → reforçar filtro nas peças",
+  ],
+  [
+    "Sentimento por território",
+    "Sentiment Engine · War Room",
+    "diário",
+    "queda sustentada de confiança → protocolo de crise (Doc. 33)",
+  ],
+];
+
+function MedicaoContinua() {
+  return (
+    <Slide>
+      <GlowOrb className="right-[-15%] bottom-[-25%] h-[55vh] w-[55vh] bg-navy" />
+      <Kicker>O dado não termina no diagnóstico</Kicker>
+      <Title>
+        A campanha se mede — e se <Coral>corrige</Coral> — todo mês
+      </Title>
+      <div className="max-w-6xl">
+        <div className="mb-2 grid grid-cols-[1.1fr_0.9fr_auto_1.5fr] items-center gap-x-4 px-4 text-[clamp(0.6rem,0.85vw,0.75rem)] font-bold uppercase tracking-[0.2em] text-white/35">
+          <span>Indicador</span>
+          <span>Instrumento</span>
+          <span>Cadência</span>
+          <span>Gatilho de correção de rumo</span>
+        </div>
+        <div className="space-y-1.5">
+          {kpis.map(([kpi, instr, cad, gatilho], i) => (
+            <div
+              key={kpi}
+              className={`anim-rise d-${cap(i + 1)} grid grid-cols-[1.1fr_0.9fr_auto_1.5fr] items-center gap-x-4 rounded-lg border border-white/8 bg-white/3 px-4 py-[clamp(6px,1vh,12px)]`}
+            >
+              <span className="text-[clamp(0.78rem,1.08vw,1rem)] font-bold">
+                {kpi}
+              </span>
+              <span className="text-[clamp(0.7rem,0.95vw,0.88rem)] text-white/60">
+                {instr}
+              </span>
+              <span className="rounded-md bg-white/10 px-2.5 py-1 text-[clamp(0.6rem,0.8vw,0.74rem)] font-black uppercase tracking-wide text-coral">
+                {cad}
+              </span>
+              <span className="text-[clamp(0.7rem,0.95vw,0.88rem)] leading-relaxed text-white/65">
+                {gatilho}
+              </span>
+            </div>
+          ))}
+        </div>
+      </div>
+      <p className="anim-rise d-7 mt-7 max-w-5xl text-[clamp(0.9rem,1.3vw,1.1rem)] leading-relaxed text-white/70">
+        É isso que diferencia dados de intuição:{" "}
+        <strong className="text-white">
+          intuição não avisa quando está errada — um sistema de medição avisa,
+          com antecedência e com endereço
+        </strong>
+        . Cada hipótese desta apresentação tem um número que a confirma ou a
+        derruba durante a própria campanha.
       </p>
     </Slide>
   );
@@ -1557,6 +2095,118 @@ function Conclusoes() {
 }
 
 /* ------------------------------------------------------------------ */
+/* 17b — Data Room (anexo)                                             */
+/* ------------------------------------------------------------------ */
+
+const acervo: [string, string, string[]][] = [
+  [
+    "Inteligência e diagnóstico",
+    "9 documentos",
+    [
+      "Investigação estratégica",
+      "Psicologia do eleitor conservador carioca",
+      "Mapa do eleitor · Voter DNA",
+      "Posicionamento estratégico · Right to Exist",
+      "Diagnóstico consolidado",
+    ],
+  ],
+  [
+    "Dossiês de adversários",
+    "8 documentos",
+    [
+      "Matriz competitiva (22 nomes, votos TSE)",
+      "Poubel · Malafaia · Anderson Moraes",
+      "Knoploch · Jordy · Carlos Augusto · Alan Lopes",
+      "Ameaça crítica corrigida (17/07/2026)",
+    ],
+  ],
+  [
+    "Identidade e marca",
+    "12 documentos",
+    [
+      "Political DNA real (questionário de Ralph)",
+      "Brand · Narrative · Visual · Digital · Community DNA",
+      "Brand Bible · Political Myth · Cultural DNA",
+      "Arquitetura ideológica",
+    ],
+  ],
+  [
+    "Operação de campanha",
+    "10 documentos",
+    [
+      "Ground Game · Fontes de votos",
+      "Calendário editorial · Roteiros de lançamento",
+      "Plano de imprensa · Manual de debates",
+      "Protocolo de crise · Call to action",
+    ],
+  ],
+  [
+    "Frameworks proprietários",
+    "6 documentos",
+    [
+      "Trust Engine · Political Gravity",
+      "Identity Loop · Emotional Territory",
+      "Political Brain · Political Myth",
+    ],
+  ],
+  [
+    "Validação e auditoria",
+    "7 documentos",
+    [
+      "Validação teórica contra as fontes (Doc. 19)",
+      "Plano de fechamento de gaps (Doc. 20)",
+      "Crítica às propostas detalhadas (Doc. 23)",
+      "Auditoria de dados públicos (Doc. 34) · Imagem-âncora (Doc. 35)",
+    ],
+  ],
+];
+
+function DataRoom() {
+  return (
+    <Slide>
+      <GlowOrb className="left-[-15%] bottom-[-25%] h-[55vh] w-[55vh] bg-navy" />
+      <Kicker>Anexo · Nada aqui é caixa-preta</Kicker>
+      <Title>
+        Data Room: os <Coral>52 documentos</Coral> por trás de cada slide
+      </Title>
+      <div className="grid max-w-6xl grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+        {acervo.map(([cat, qtd, docs], i) => (
+          <Card key={cat} delay={`d-${cap(i + 1)}`} className="flex flex-col">
+            <div className="flex items-baseline justify-between gap-3">
+              <h3 className="text-[clamp(0.82rem,1.15vw,1.05rem)] font-extrabold">
+                {cat}
+              </h3>
+              <span className="shrink-0 text-[clamp(0.6rem,0.8rem,0.75rem)] font-bold uppercase tracking-wide text-coral">
+                {qtd}
+              </span>
+            </div>
+            <ul className="mt-3 space-y-1.5">
+              {docs.map((d) => (
+                <li
+                  key={d}
+                  className="flex gap-2 text-[clamp(0.68rem,0.92vw,0.85rem)] leading-snug text-white/60"
+                >
+                  <span className="text-coral/70">·</span>
+                  {d}
+                </li>
+              ))}
+            </ul>
+          </Card>
+        ))}
+      </div>
+      <p className="anim-rise d-7 mt-6 max-w-5xl text-[clamp(0.85rem,1.25vw,1.05rem)] leading-relaxed text-white/65">
+        Acervo completo à disposição do candidato e da equipe —{" "}
+        <strong className="text-white">
+          qualquer afirmação desta apresentação pode ser auditada até a fonte
+          primária
+        </strong>
+        , documento por documento.
+      </p>
+    </Slide>
+  );
+}
+
+/* ------------------------------------------------------------------ */
 /* 18 — Fechamento                                                     */
 /* ------------------------------------------------------------------ */
 
@@ -1593,28 +2243,35 @@ export const slides: { id: string; node: ReactNode }[] = [
   { id: "capa", node: <Capa /> },
   { id: "abertura", node: <Abertura /> },
   { id: "metodologia", node: <Metodologia /> },
+  { id: "estudo-numeros", node: <EstudoNumeros /> },
   { id: "frameworks", node: <Frameworks /> },
   { id: "por-que", node: <PorQue /> },
   { id: "terreno", node: <Terreno /> },
   { id: "eleitor", node: <Eleitor /> },
   { id: "concorrencia", node: <Concorrencia /> },
   { id: "aritmetica", node: <AritmeticaEleicao /> },
+  { id: "escala-desafio", node: <EscalaDesafio /> },
   { id: "tiers-ameaca", node: <TiersAmeaca /> },
   { id: "matriz-posicionamento", node: <MatrizPosicionamento /> },
+  { id: "mapa-posicionamento", node: <MapaPosicionamento /> },
   { id: "dados-publicos", node: <DadosPublicos /> },
   { id: "virada", node: <Virada /> },
   { id: "frase", node: <Frase /> },
+  { id: "triangulacao", node: <Triangulacao /> },
   { id: "conflito", node: <Conflito /> },
   { id: "arquetipo", node: <Arquetipo /> },
   { id: "posicionamento", node: <Posicionamento /> },
   { id: "diferenciacao", node: <Diferenciacao /> },
   { id: "marca-operacao", node: <MarcaOperacao /> },
+  { id: "caminho-votos", node: <CaminhoVotos /> },
   { id: "teoria-imagem", node: <TeoriaImagem /> },
   { id: "visual-dna", node: <VisualDna /> },
   { id: "imagem-ancora", node: <ImagemAncora /> },
   { id: "digital-dna", node: <DigitalDna /> },
   { id: "filtro", node: <Filtro /> },
+  { id: "medicao-continua", node: <MedicaoContinua /> },
   { id: "pendencias", node: <Pendencias /> },
   { id: "conclusoes", node: <Conclusoes /> },
+  { id: "data-room", node: <DataRoom /> },
   { id: "fechamento", node: <Fechamento /> },
 ];
