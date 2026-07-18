@@ -13,6 +13,11 @@ npm run dev
 
 Abrir [http://localhost:3000](http://localhost:3000).
 
+Rotas:
+
+- `/` — apresentação estratégica completa para o candidato (27 slides)
+- `/campaingos` — o que é o CampaignOS (15 slides)
+
 ## Navegação
 
 - `→` / `↓` / `espaço` / `Enter` — próximo slide
