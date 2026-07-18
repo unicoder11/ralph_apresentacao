@@ -1,36 +1,35 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Apresentação Estratégica — Ralph Gracie (CampaignOS)
 
-## Getting Started
+Slides interativos em Next.js para apresentar ao candidato o estudo completo:
+metodologia (CampaignOS + frameworks), diagnóstico de mercado, a virada
+Formador → Protetor, posicionamento final e conclusões.
 
-First, run the development server:
+## Rodar
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Abrir [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Navegação
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- `→` / `↓` / `espaço` / `Enter` — próximo slide
+- `←` / `↑` — slide anterior
+- `Home` / `End` — primeiro / último slide
+- Clique nas bordas laterais da tela ou nos botões do rodapé
 
-## Learn More
+## Estrutura
 
-To learn more about Next.js, take a look at the following resources:
+- `src/components/deck/Deck.tsx` — motor de navegação (teclado, progresso, contador)
+- `src/components/deck/slides.tsx` — os 27 slides com todo o conteúdo
+  (inclui matrizes competitivas, dados públicos verificados, base teórica,
+  Visual DNA, imagem-âncora e Digital DNA)
+- `src/components/deck/primitives.tsx` — blocos visuais reutilizáveis
+- `src/app/globals.css` — paleta (azul #123B6A, coral #F46A4E) e animações
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Identidade visual
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Segue o Visual DNA (Documento 26): azul escuro dominante, coral como acento
+(nunca dominante), tipografia Montserrat.
